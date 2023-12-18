@@ -1,9 +1,11 @@
 import { ButtonPrimary } from "@/components/buttons/button-primary";
 import { ButtonSecondary } from "@/components/buttons/button-secondary";
+import { ModalDefault } from "@/components/modals/modal-default";
 import { TableColumn, TableDefault } from "@/components/tables/table-default";
 import { fetchData } from "@/helpers/fetch";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
+import { CollectionViewContent } from "./content";
 
 export default async function CollectionViewPage({ params }: { params: { id: string } }) {
     const { result } = await fetchData(`collections/${params.id}`, 0);
@@ -52,7 +54,7 @@ export default async function CollectionViewPage({ params }: { params: { id: str
                 </div>
                 <div className="flex gap-4">
                     <ButtonPrimary title="Editar coleção" />
-                    <ButtonSecondary title="Upload de arquivo" />
+                    <CollectionViewContent />
                 </div>
             </div>
             <TableDefault columns={columns} data={result?.files ?? []} />

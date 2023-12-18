@@ -12,8 +12,8 @@ export function ButtonSecondary({title, full, Icon, ...options}: Props) {
     return (
         <button className={`
             ${full ? 'w-full' : 'w-fit'}
-            h-12 transition-colors rounded-md px-6 text-gray-800 font-medium text-base
-            bg-gray-200 hover:bg-gray-300 active:bg-gray-400
+            h-12 transition-colors rounded-md px-6 font-medium text-base
+            bg-primary-100 text-primary-500 hover:bg-primary-500/20 active:bg-primary-500/30
             flex items-center justify-center gap-2
         `} {...options}>
             {Icon && <span className="text-xl text-white"><Icon /></span>}

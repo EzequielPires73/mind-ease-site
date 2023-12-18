@@ -15,8 +15,8 @@ export function Accordion({ title, children }: Props) {
         <div className={`flex flex-col w-full h-fit rounded-md border ${show && 'border-primary-500'}`}>
             <button className={`
                 flex items-center justify-between 
-                px-4 h-16 rounded-md 
-                ${show ? 'bg-primary-500 text-white' : 'hover:bg-gray-50' }
+                px-4 h-16 
+                ${show ? 'bg-primary-500/10 text-primary-500 rounded-t' : 'hover:bg-gray-50 rounded-md' }
                 transition-colors font-medium
             `}
                 onClick={() => setShow(!show)}
