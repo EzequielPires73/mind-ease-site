@@ -8,12 +8,12 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     full?: boolean;
 }
 
-export function ButtonSecondary({title, full, Icon, ...options}: Props) {
+export function ButtonDanger({title, full, Icon, ...options}: Props) {
     return (
         <button className={`
             ${full ? 'w-full' : 'w-fit'}
-            h-12 transition-colors rounded-md px-6 font-medium text-base
-            bg-primary-100 text-primary-500 hover:bg-primary-200 active:bg-primary-300
+            h-12 transition-colors rounded-md px-6 text-white font-medium text-base
+            bg-red-500 hover:bg-red-600 active:bg-red-600/90
             flex items-center justify-center gap-2
         `} {...options}>
             {Icon && <span className="text-xl text-white"><Icon /></span>}
