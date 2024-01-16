@@ -5,27 +5,14 @@ import { getImageUrl } from "@/helpers/image"
 import { api } from "@/services/api"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+import { CollectionViewContent } from "./content"
+import { Player } from "@/components/player"
 
 export function CollectionViewTable({ files, collectionId }) {
     const router = useRouter();
     const [fileSelected, setFileSelected] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const ref = useRef(null);
-
-    const handleOutsideClick = (event: any) => {
-        if (ref.current && !ref.current.contains(event.target)) {
-            setFileSelected(null);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleOutsideClick);
-
-        return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
-        };
-    }, []);
 
     const columns: TableColumn[] = [
         {
@@ -63,8 +50,8 @@ export function CollectionViewTable({ files, collectionId }) {
     const handleDelete = async (id: number) => {
         try {
             setLoading(true);
-            const {success, message} = await api.delete(`collection-files/${id}`).then(res => res.data);
-            if(success) {
+            const { success, message } = await api.delete(`collection-files/${id}`).then(res => res.data);
+            if (success) {
                 router.refresh();
             } else {
                 throw new Error(message);
@@ -91,19 +78,19 @@ export function CollectionViewTable({ files, collectionId }) {
     }
 
     return (
-        <>
+        <div className="flex flex-col gap-2">
+            <div className="flex items-center justify-between">
+                <span className="text-lg font-medium">{files.length} arquivos encontrados</span>
+                <CollectionViewContent collectionId={collectionId} />
+            </div>
             <TableDefault
                 columns={columns}
                 data={files ?? []}
                 actions={action}
             />
             {fileSelected &&
-                <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/50">
-                    <video controls width={500} className="h-fit" ref={ref}>
-                        <source src={getImageUrl(fileSelected.path)} />
-                    </video>
-                </div>
+                <Player path={fileSelected.path} close={() => setFileSelected(false)} show={true} />
             }
-        </>
+        </div>
     )
 }

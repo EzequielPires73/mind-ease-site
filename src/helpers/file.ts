@@ -33,3 +33,19 @@ export function pngFileFilter(file: File) {
     }
     return true;
 }
+
+export function checkFileType(arquivo) {
+    var extensoesAudio = ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.m4a', '.wma'];
+    var extensoesVideo = ['.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm'];
+    var extensoesImagem = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.svg'];
+
+    if (extensoesAudio.some(extensao => arquivo.includes(extensao))) {
+        return 1;
+    } else if (extensoesVideo.some(extensao => arquivo.includes(extensao))) {
+        return 2;
+    } else if (extensoesImagem.some(extensao => arquivo.includes(extensao))) {
+        return 3;
+    } else {
+        return 0;
+    }
+}

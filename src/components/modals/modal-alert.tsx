@@ -33,7 +33,7 @@ export function ModalAlert({close, onSubmit, show, subtitle, title}: Props) {
     
     return (
         <div className="fixed z-[9999] top-0 left-0 right-0 bottom-0 bg-black/50 flex items-center justify-center">
-            <div className="w-full max-w-xl rounded-xl bg-white p-3" ref={ref}>
+            <div className="w-full max-w-xl rounded-md bg-white p-3" ref={ref}>
                 <h4 className="text-xl font-semibold text-gray-800">{title}</h4>
                 <p>{subtitle}</p>
                 <div className="flex items-center justify-end gap-3 mt-4">

@@ -1,5 +1,6 @@
 'use client'
 
+import { CardFile } from "@/components/cards/card-file";
 import { InputText } from "@/components/forms-components/input-text";
 import Select from "@/components/forms-components/select";
 import { Textarea } from "@/components/forms-components/textarea";
@@ -83,7 +84,7 @@ export function CollectionViewContent({ collectionId }) {
 
     const uploadThumbnail = (file: File) => {
         if (imageFileFilter(file)) {
-            { errorThumbnail && setThumbnail(null) }
+            { errorThumbnail && setErrorThumbnail(null) }
             setThumbnail(file);
         } else {
             setErrorThumbnail('Formato do arquivo deve ser de imagem.')
@@ -111,36 +112,10 @@ export function CollectionViewContent({ collectionId }) {
             />
             <input type="file" name="file" id="file" className="hidden" onChange={e => uploadFile(e.target.files[0])} />
             <input type="file" name="thumbnail" id="thumbnail" className="hidden" onChange={e => uploadThumbnail(e.target.files[0])} />
-            {
-                file &&
-                <div className="flex items-center justify-between p-3 bg-gray-100 rounded shadow-md">
-                    <div className="flex items-center gap-3">
-                        <button className="h-10 w-10 flex items-center justify-center bg-primary-600 rounded-md font-semibold text-white">
-                            <FiMusic size={16} />
-                        </button>
-                        <span className="text-base font-semibold text-primary-600">{file.name}</span>
-                    </div>
-                    <button onClick={() => setFile(null)} className="h-10 w-10 flex items-center justify-center bg-red-500 rounded-md font-semibold text-white">
-                        <FiTrash size={16} />
-                    </button>
-                </div>
-            }
+            { file && <CardFile file={file} onRemove={() => setFile(null)}/> }
             {errorFile && <span className="px-3 h-12 flex items-center bg-red-100 text-red-500 font-medium rounded-md">{errorFile}</span>}
             <label htmlFor="file" className="cursor-pointer h-12 px-3 rounded-md bg-primary-100 text-primary-600 text-base font-semibold flex items-center justify-center">Escolher arquivo</label>
-            {
-                thumbnail &&
-                <div className="flex items-center justify-between p-3 bg-gray-100 rounded shadow-md">
-                    <div className="flex items-center gap-3">
-                        <button className="h-10 w-10 flex items-center justify-center bg-primary-600 rounded-md font-semibold text-white">
-                            <FiImage size={16} />
-                        </button>
-                        <span className="text-base font-semibold text-primary-600">{thumbnail.name}</span>
-                    </div>
-                    <button onClick={() => setThumbnail(null)} className="h-10 w-10 flex items-center justify-center bg-red-500 rounded-md font-semibold text-white">
-                        <FiTrash size={16} />
-                    </button>
-                </div>
-            }
+            { thumbnail && <CardFile file={thumbnail} onRemove={() => setThumbnail(null)}/> }
             {errorThumbnail && <span className="px-3 h-12 flex items-center bg-red-100 text-red-500 font-medium rounded-md">{errorThumbnail}</span>}
             <label htmlFor="thumbnail" className="cursor-pointer h-12 px-3 rounded-md bg-gray-600 text-white text-base font-semibold flex items-center justify-center">Escolher Thumbnail</label>
         </ModalDefault>
