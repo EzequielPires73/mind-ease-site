@@ -10,8 +10,7 @@ import { useForm } from "@/hooks/useForm";
 import { useSelect } from "@/hooks/useSelect";
 import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FiImage, FiMusic, FiTrash } from "react-icons/fi";
+import { useState } from "react";
 
 export function CollectionViewContent({ collectionId }) {
     const router = useRouter();

@@ -3,6 +3,7 @@
 import { Accordion } from "@/components/accordion"
 import { ButtonPrimary } from "@/components/buttons/button-primary"
 import { ButtonSecondary } from "@/components/buttons/button-secondary"
+import { ModalCreateCollection } from "@/components/modals/modal-create-collection"
 import { TableColumn, TableDefault } from "@/components/tables/table-default"
 import { getImageUrl } from "@/helpers/image"
 
@@ -40,9 +41,7 @@ export function Content({ subcategories }) {
                                 <ButtonPrimary
                                     title="Editar"
                                 />
-                                <ButtonSecondary
-                                    title="Cadastrar"
-                                />
+                                <ModalCreateCollection subcategory={subcategory}/>
                             </div>
                         </div>
                         <TableDefault columns={columns} data={subcategory.collections} forwardLink={(id) => `/admin/collections/${id}`} />
