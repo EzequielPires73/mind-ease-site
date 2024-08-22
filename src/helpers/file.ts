@@ -11,9 +11,9 @@ export const blobToFile = async (path: string) => {
 }
 
 export function audioVideoFileFilter(file: File) {
-    const allowedExtensions = /\.(mp3|wav|mp4|avi)$/;
+    const allowedExtensions = /\.(mp3|wav|mp4|avi|m4a)$/;
 
-    if (!file.name.match(allowedExtensions)) {
+    if (!file.name.toLowerCase().match(allowedExtensions)) {
         return false;
     }
 
