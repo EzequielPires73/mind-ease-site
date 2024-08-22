@@ -1,5 +1,5 @@
 import { useCountProps } from "../../hooks/useCount";
-import { components } from "../../styles/tailwind";
+import { components } from "../../../tailwind";
 
 interface Props extends useCountProps {
     title?: string;

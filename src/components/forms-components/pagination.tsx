@@ -3,7 +3,7 @@
 import React, { useCallback } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { components } from '../../styles/tailwind';
+import { components } from '../../../tailwind';
 
 export const Pagination = ({ currentPage, totalPages }) => {
   const searchParams = useSearchParams();
